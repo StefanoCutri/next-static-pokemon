@@ -36,9 +36,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     }.svg`,
   }));
 
-  console.log(pokemons);
-
-  // "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg"
   return {
     props: {
       pokemons,
