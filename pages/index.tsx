@@ -11,10 +11,9 @@ const HomePage: NextPage = (props) => {
       <Layout title="Pokemon List">
         <h1>Hola mundo</h1>
         <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+         {
+          
+         }
         </ul>
       </Layout>
     </>
