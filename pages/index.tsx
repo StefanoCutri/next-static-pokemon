@@ -4,6 +4,7 @@ import { Card, Grid, Row, Text } from "@nextui-org/react";
 import { Layout } from "@/components/layouts";
 import { pokeApi } from "@/api";
 import { PokemonListResponse, SmallPokemon } from "@/interfaces";
+import { PokemonCard } from "@/components/pokemons";
 
 interface Props {
   pokemons: SmallPokemon[];
@@ -15,20 +16,8 @@ const HomePage: NextPage<Props> = ({ pokemons }) => {
       <Layout title="Pokemon List">
         <h1>Hola mundo</h1>
         <Grid.Container gap={2} justify="flex-start">
-          {pokemons.map(({ id, name, img }) => (
-            <Grid xs={6} sm={2} md={2} xl={1} key={id}>
-              <Card hoverable clickable>
-                <Card.Body css={{ p: 1 }}>
-                  <Card.Image src={img} width="100%" height={140} />
-                </Card.Body>
-                <Card.Footer>
-                  <Row justify="space-between">
-                    <Text transform="capitalize">{name}</Text>
-                    <Text>#{id}</Text>
-                  </Row>
-                </Card.Footer>
-              </Card>
-            </Grid>
+          {pokemons.map((pokemon) => (
+            <PokemonCard pokemon={pokemon} />
           ))}
         </Grid.Container>
       </Layout>
