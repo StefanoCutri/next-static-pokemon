@@ -1,11 +1,12 @@
-import {Layout} from '../../components/layouts/Layout'
+import { Layout } from "../../components/layouts/Layout";
+import { NoFavourites } from "../../components/ui";
 
 export const FavouritesPage = () => {
   return (
-    <Layout>
-        <h1>Favourites</h1>
+    <Layout title="Pokemons - Favourites">
+      <NoFavourites />;
     </Layout>
-  )
-}
+  );
+};
 
-export default FavouritesPage
+export default FavouritesPage;
