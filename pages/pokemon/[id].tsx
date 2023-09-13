@@ -4,11 +4,22 @@ import { Button, Card, Container, Grid, Text, Image } from "@nextui-org/react";
 import { Layout } from "@/components/layouts";
 import { pokeApi } from "@/api";
 import { Pokemon } from "@/interfaces";
+import { localFavourites } from "@/utils";
+import { useState } from "react";
 
 interface Props {
   pokemon: Pokemon;
 }
 const PokemonPage = ({ pokemon }: Props) => {
+  const [isFavourite, setIsFavourite] = useState(
+    localFavourites.isInFavourites(pokemon.id)
+  );
+
+  const onTogglePokemon = () => {
+    localFavourites.toggleFavourite(pokemon.id);
+    setIsFavourite(!isFavourite);
+  };
+
   return (
     <Layout title={pokemon.name}>
       <Grid.Container css={{ marginTop: "5px" }} gap={2}>
@@ -35,8 +46,12 @@ const PokemonPage = ({ pokemon }: Props) => {
               <Text h1 transform="capitalize">
                 {pokemon.name}
               </Text>
-              <Button color="gradient" ghost>
-                Save to favourites
+              <Button
+                color="gradient"
+                ghost={!isFavourite}
+                onClick={onTogglePokemon}
+              >
+                {isFavourite ? "Added!" : "Add to favourites"}
               </Button>
             </Card.Header>
             <Card.Body>
