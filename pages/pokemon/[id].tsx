@@ -1,11 +1,13 @@
+import { useState } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { Button, Card, Container, Grid, Text, Image } from "@nextui-org/react";
+
+import confetti from 'canvas-confetti';
 
 import { Layout } from "@/components/layouts";
 import { pokeApi } from "@/api";
 import { Pokemon } from "@/interfaces";
 import { localFavourites } from "@/utils";
-import { useEffect, useState } from "react";
 
 interface Props {
   pokemon: Pokemon;
@@ -18,13 +20,21 @@ const PokemonPage = ({ pokemon }: Props) => {
   const onTogglePokemon = () => {
     localFavourites.toggleFavourite(pokemon.id);
     setIsFavourite(!isFavourite);
-  };
 
-  useEffect(() => {
-    console.log( pokemon.sprites.other?.dream_world.front_default);
-    
-  }, [])
-  
+    if(isFavourite) return;
+
+    confetti({
+      particleCount: 100,
+      startVelocity: 30,
+      spread: 360,
+      origin: {
+        x: 1,
+        // since they fall down, start a bit higher than random
+        y: 0
+      }
+    });
+
+  };
 
   return (
     <Layout title={pokemon.name}>
