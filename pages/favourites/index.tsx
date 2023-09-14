@@ -18,7 +18,7 @@ export const FavouritesPage = () => {
       {favouritePokemons.length === 0 ? (
         <NoFavourites />
       ) : (
-        <FavouritePokemons pokemons={favouritePokemons}/>
+        <FavouritePokemons pokemons={favouritePokemons} />
       )}
     </Layout>
   );

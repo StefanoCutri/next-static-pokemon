@@ -6,7 +6,7 @@ import confetti from "canvas-confetti";
 
 import { Layout } from "@/components/layouts";
 import { pokeApi } from "@/api";
-import { Pokemon, PokemonListResponse, SmallPokemon } from "@/interfaces";
+import { Pokemon, PokemonListResponse } from "@/interfaces";
 import { getPokemonInfo, localFavourites } from "@/utils";
 
 interface Props {
