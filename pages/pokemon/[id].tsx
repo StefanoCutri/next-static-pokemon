@@ -5,7 +5,7 @@ import { Layout } from "@/components/layouts";
 import { pokeApi } from "@/api";
 import { Pokemon } from "@/interfaces";
 import { localFavourites } from "@/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   pokemon: Pokemon;
@@ -19,6 +19,12 @@ const PokemonPage = ({ pokemon }: Props) => {
     localFavourites.toggleFavourite(pokemon.id);
     setIsFavourite(!isFavourite);
   };
+
+  useEffect(() => {
+    console.log( pokemon.sprites.other?.dream_world.front_default);
+    
+  }, [])
+  
 
   return (
     <Layout title={pokemon.name}>
