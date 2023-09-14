@@ -2,12 +2,11 @@ import { useState } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { Button, Card, Container, Grid, Text, Image } from "@nextui-org/react";
 
-import confetti from 'canvas-confetti';
+import confetti from "canvas-confetti";
 
 import { Layout } from "@/components/layouts";
-import { pokeApi } from "@/api";
 import { Pokemon } from "@/interfaces";
-import { localFavourites } from "@/utils";
+import { getPokemonInfo, localFavourites } from "@/utils";
 
 interface Props {
   pokemon: Pokemon;
@@ -21,7 +20,7 @@ const PokemonPage = ({ pokemon }: Props) => {
     localFavourites.toggleFavourite(pokemon.id);
     setIsFavourite(!isFavourite);
 
-    if(isFavourite) return;
+    if (isFavourite) return;
 
     confetti({
       particleCount: 100,
@@ -30,10 +29,9 @@ const PokemonPage = ({ pokemon }: Props) => {
       origin: {
         x: 1,
         // since they fall down, start a bit higher than random
-        y: 0
-      }
+        y: 0,
+      },
     });
-
   };
 
   return (
@@ -119,11 +117,9 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params as { id: string };
 
-  const { data } = await pokeApi.get<Pokemon>(`/pokemon/${id}`);
-
   return {
     props: {
-      pokemon: data,
+      pokemon: await getPokemonInfo(id),
     },
   };
 };
